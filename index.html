@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=0add947d-6965-4da6-b1bc-6a0d31ada038
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>RAXI WIN PANEL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --panel-width:220px;
+    --red:#ff1738;
+    --red2:#ff4d4d;
+    --red3:#ff9999;
+    --green:#00ff66;
+    --deep:#100000;
+    --deep2:#220000;
+    --deep3:#420000;
+    --white:#ffffff;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#1a0000;
+    font-family:'Rajdhani',sans-serif;
+    position:relative;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+#bg-iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    position:absolute;
+    inset:0;
+    z-index:1;
+}
+
+/* =========================================================
+   GLOBAL SHAKE
+========================================================= */
+
+@keyframes fullScreenShake{
+    0%{transform:translate(0,0)}
+    20%{transform:translate(2px,1px)}
+    40%{transform:translate(-2px,-1px)}
+    60%{transform:translate(1px,-1px)}
+    80%{transform:translate(-1px,1px)}
+    100%{transform:translate(0,0)}
+}
+
+.shake-active{
+    animation:fullScreenShake .32s ease-in-out both;
+}
+
+/* =========================================================
+   FLOATING LOGO
+========================================================= */
+
+#floating-logo{
+    position:fixed;
+    top:25px;
+    right:15px;
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    z-index:9999;
+    touch-action:none;
+    background:rgba(20,0,0,.9);
+    box-shadow:
+        0 0 15px rgba(255,50,50,.6),
+        0 0 25px rgba(255,0,0,.3);
+    animation:
+        floatLogo 3.5s ease-in-out infinite alternate,
+        logoBreathing 2.5s ease-in-out infinite;
+}
+
+#floating-logo::before{
+    content:'';
+    position:absolute;
+    inset:-2px;
+    border-radius:50%;
+    background:
+        conic-gradient(
+            from 0deg,
+            #ff0055,
+            #ff4d4d,
+            transparent 60%,
+            #ff0055
+        );
+    animation:logoRotate 2.5s linear infinite;
+    z-index:0;
+    pointer-events:none;
+}
+
+#floating-logo::after{
+    content:'';
+    position:absolute;
+    inset:-5px;
+    border-radius:50%;
+    border:1px solid rgba(255,80,80,.5);
+    animation:
+        logoPulse 1.8s ease-in-out infinite alternate,
+        reverseRing 4s linear infinite;
+    z-index:0;
+    pointer-events:none;
+}
+
+.logo-img-wrapper{
+    width:86%;
+    height:86%;
+    border-radius:50%;
+    overflow:hidden;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    z-index:2;
+    border:1px solid rgba(255,100,100,.6);
+    box-shadow:inset 0 0 10px rgba(255,0,0,.35);
+}
+
+.logo-img-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    animation:logoImagePulse 2s ease-in-out infinite;
+}
+
+/* =========================================================
+   PANEL WRAPPER
+========================================================= */
+
+.panel-floating-wrapper{
+    position:fixed;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:10000;
+    touch-action:none;
+}
+
+/* =========================================================
+   VIP PANEL
+========================================================= */
+
+#vip-panel{
+    width:var(--panel-width);
+    background:
+        linear-gradient(
+            135deg,
+            #420000 0%,
+            #220000 50%,
+            #100000 100%
+        );
+    border-radius:18px;
+    padding:4px;
+    position:relative;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.95),
+        0 0 20px rgba(255,30,30,.3);
+    overflow:hidden;
+    animation:
+        panelFloat 4s ease-in-out infinite,
+        panelGlow 3s ease-in-out infinite;
+}
+
+#vip-panel::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:
+        conic-gradient(
+            transparent 0deg,
+            transparent 70deg,
+            #ff4d4d 90deg,
+            #ffffff 100deg,
+            transparent 115deg,
+            transparent 230deg,
+            #ff1738 270deg,
+            transparent 300deg
+        );
+    animation:
+        thinBorderRotate 3s linear infinite,
+        borderSweep 5s linear infinite;
+    z-index:0;
+    pointer-events:none;
+}
+
+#vip-panel::after{
+    content:'';
+    position:absolute;
+    width:30px;
+    height:180%;
+    left:-60px;
+    top:-40%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.6),
+            transparent
+        );
+    transform:rotate(22deg);
+    filter:blur(3px);
+    animation:edgeSweep 3.8s linear infinite;
+    z-index:4;
+    pointer-events:none;
+}
+
+/* =========================================================
+   INNER PANEL
+========================================================= */
+
+.inner-panel-content{
+    position:relative;
+    z-index:2;
+    background:
+        linear-gradient(
+            135deg,
+            #3b0000 0%,
+            #1c0000 100%
+        );
+    border-radius:15px;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    overflow:hidden;
+}
+
+.inner-panel-content::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(135deg, rgba(255,50,50,.08) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(255,50,50,.08) 25%, transparent 25%),
+        linear-gradient(45deg, rgba(255,50,50,.08) 25%, transparent 25%),
+        linear-gradient(315deg, rgba(255,50,50,.08) 25%, transparent 25%);
+    background-size:16px 16px;
+    animation:gridMove 4s linear infinite;
+    pointer-events:none;
+    z-index:1;
+    opacity:.7;
+}
+
+.inner-panel-content::after{
+    content:'';
+    position:absolute;
+    left:0;
+    top:-100%;
+    width:100%;
+    height:60%;
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(255,60,80,.06),
+            rgba(255,255,255,.08),
+            rgba(255,60,80,.06),
+            transparent
+        );
+    animation:panelScan 3.5s linear infinite;
+    pointer-events:none;
+    z-index:1;
+}
+
+/* =========================================================
+   CORNER PINS
+========================================================= */
+
+.corner-pin{
+    position:absolute;
+    width:8px;
+    height:8px;
+    z-index:20;
+    pointer-events:none;
+}
+
+.corner-pin-tl{ top:3px; left:3px; border-top:2px solid #ff9999; border-left:2px solid #ff9999; }
+.corner-pin-tr{ top:3px; right:3px; border-top:2px solid #ff9999; border-right:2px solid #ff9999; }
+.corner-pin-bl{ bottom:3px; left:3px; border-bottom:2px solid #ff9999; border-left:2px solid #ff9999; }
+.corner-pin-br{ bottom:3px; right:3px; border-bottom:2px solid #ff9999; border-right:2px solid #ff9999; }
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header-top-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(30,0,0,.85);
+    padding:6px 10px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,.2);
+    cursor:move;
+    z-index:5;
+    position:relative;
+    overflow:hidden;
+    transform-style:preserve-3d;
+    animation:headerBreath 2.4s ease-in-out infinite;
+}
+
+.header-top-row::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-70px;
+    width:40px;
+    height:100%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.3),
+            transparent
+        );
+    transform:skewX(-20deg);
+    animation:headerShine 2.6s linear infinite;
+    pointer-events:none;
+}
+
+.header-title{
+    font-family:'Orbitron',sans-serif;
+    color:#ffffff;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-shadow:0 0 8px rgba(255,77,77,.8);
+    animation:titlePulse 2s ease-in-out infinite;
+}
+
+.active-badge{
+    background:rgba(0,255,100,.2);
+    color:#00ff66;
+    font-family:'Share Tech Mono',monospace;
+    font-size:9px;
+    padding:2px 6px;
+    border-radius:5px;
+    font-weight:bold;
+    border:1px solid rgba(0,255,100,.5);
+    display:flex;
+    align-items:center;
+    gap:4px;
+    position:relative;
+    overflow:hidden;
+    animation:badgeGlow 1.8s ease-in-out infinite;
+}
+
+.active-badge::after{
+    content:'';
+    position:absolute;
+    left:-45px;
+    top:0;
+    width:22px;
+    height:100%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.45),
+            transparent
+        );
+    animation:toggleShine 2s linear infinite;
+    pointer-events:none;
+}
+
+.active-dot{
+    width:5px;
+    height:5px;
+    background:#00ff66;
+    border-radius:50%;
+    box-shadow:0 0 6px #00ff66;
+    animation:
+        dotGlow 1.2s ease-in-out infinite alternate,
+        dotSpring 1.5s ease-in-out infinite;
+}
+
+/* =========================================================
+   STATUS BAR
+========================================================= */
+
+.status-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(15,0,0,.7);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:6px;
+    padding:4px 8px;
+    font-size:9px;
+    color:#ffb3b3;
+    font-family:'Share Tech Mono',monospace;
+    font-weight:bold;
+    z-index:5;
+    position:relative;
+    animation:metaPulse 2.2s ease-in-out infinite;
+}
+
+.status-left{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.check-icon{
+    width:12px;
+    height:12px;
+    fill:#00ff66;
+    filter:drop-shadow(0 0 2px #00ff66);
+    animation:checkPulse 1.5s ease-in-out infinite;
+}
+
+.status-item{
+    animation:statusBlink 1.7s ease-in-out infinite;
+}
+
+.status-item span.green-txt{
+    color:#00ff66;
+    text-shadow:0 0 4px #00ff66;
+}
+
+/* =========================================================
+   DISPLAY SCREEN
+========================================================= */
+
+.display-screen{
+    background:rgba(18,0,0,.9);
+    border:1px solid rgba(255,100,100,.35);
+    border-radius:12px;
+    padding:10px 8px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    z-index:3;
+    min-height:120px;
+    transform-style:preserve-3d;
+    animation:displayBreathing 2.8s ease-in-out infinite;
+}
+
+.display-screen::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,40,40,.25) 0%,
+            transparent 65%
+        );
+    animation:pulseGlow 2.2s ease-in-out infinite alternate;
+    pointer-events:none;
+    z-index:1;
+}
+
+.display-screen::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+        repeating-linear-gradient(
+            180deg,
+            transparent 0px,
+            transparent 5px,
+            rgba(255,255,255,.035) 6px,
+            transparent 7px
+        );
+    background-size:100% 100px;
+    animation:scanMove 4.5s linear infinite;
+    pointer-events:none;
+    z-index:2;
+    opacity:.7;
+}
+
+/* =========================================================
+   INITIAL LOCK VIEW
+========================================================= */
+
+.initial-lock-view{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:8;
+    position:relative;
+    gap:5px;
+    padding:4px 0;
+}
+
+.svg-lock-icon{
+    width:32px;
+    height:32px;
+    fill:none;
+    stroke:#ff4d4d;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    filter:drop-shadow(0 0 6px rgba(255,77,77,0.8));
+    animation:lockGlow 2s ease-in-out infinite;
+}
+
+@keyframes lockGlow{
+    0%,100%{ transform:scale(1); filter:drop-shadow(0 0 4px rgba(255,77,77,0.6)); }
+    50%{ transform:scale(1.08); filter:drop-shadow(0 0 10px rgba(255,0,0,0.9)); }
+}
+
+.init-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:10px;
+    font-weight:900;
+    color:#ffffff;
+    letter-spacing:1px;
+    text-shadow:0 0 8px #ff1738;
+}
+
+.init-sub{
+    font-family:'Share Tech Mono',monospace;
+    font-size:8px;
+    color:#ff9999;
+    letter-spacing:0.5px;
+}
+
+/* =========================================================
+   SWORD & GLASS SHATTER ANIMATION
+========================================================= */
+
+.sword-container{
+    position:absolute;
+    inset:0;
+    z-index:25;
+    pointer-events:none;
+    overflow:hidden;
+    display:none;
+}
+
+.sword-container.active{
+    display:block;
+}
+
+.svg-sword{
+    position:absolute;
+    left:50%;
+    bottom:-60px;
+    width:28px;
+    height:70px;
+    transform:translateX(-50%);
+    filter:drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 12px #ff0055);
+    animation:swordSlash 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes swordSlash{
+    0%{ bottom:-60px; opacity:0; transform:translateX(-50%) scale(0.8); }
+    20%{ opacity:1; }
+    50%{ bottom:25%; transform:translateX(-50%) scale(1.1); }
+    75%{ bottom:80%; opacity:1; }
+    100%{ bottom:120%; opacity:0; transform:translateX(-50%) scale(1.3); }
+}
+
+.glass-shatter-layer{
+    position:absolute;
+    inset:0;
+    z-index:26;
+    pointer-events:none;
+    opacity:0;
+}
+
+.glass-shatter-layer.shatter-active{
+    animation:shatterFlash 0.6s ease-out forwards;
+    animation-delay:1.2s;
+}
+
+@keyframes shatterFlash{
+    0%{ opacity:0; transform:scale(0.9); }
+    20%{ opacity:1; background:rgba(255,255,255,0.4); }
+    100%{ opacity:0; transform:scale(1.2); }
+}
+
+.glass-shard{
+    position:absolute;
+    background:rgba(255,255,255,0.8);
+    box-shadow:0 0 6px #ffffff, 0 0 10px #ff4d4d;
+    clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+    opacity:0;
+}
+
+.shatter-active .glass-shard{
+    animation:shardFly 0.8s ease-out forwards;
+    animation-delay:1.2s;
+}
+
+.shard-1{ width:14px; height:20px; top:30%; left:40%; }
+.shard-2{ width:16px; height:24px; top:25%; left:55%; }
+.shard-3{ width:12px; height:18px; top:45%; left:35%; }
+.shard-4{ width:15px; height:20px; top:40%; left:60%; }
+
+@keyframes shardFly{
+    0%{ opacity:1; transform:translate(0,0) rotate(0deg); }
+    100%{ opacity:0; transform:translate(var(--tx), var(--ty)) rotate(var(--rot)); }
+}
+
+.shard-1{ --tx:-45px; --ty:-35px; --rot:-120deg; }
+.shard-2{ --tx:50px; --ty:-40px; --rot:140deg; }
+.shard-3{ --tx:-35px; --ty:40px; --rot:-90deg; }
+.shard-4{ --tx:45px; --ty:35px; --rot:180deg; }
+
+/* =========================================================
+   ANIMATION STORE ORBIT RINGS
+========================================================= */
+
+.store-rings{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:80px;
+    height:80px;
+    transform:translate(-50%,-50%);
+    z-index:2;
+    pointer-events:none;
+    opacity:.5;
+}
+
+.store-ring{
+    position:absolute;
+    left:50%;
+    top:50%;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(255,50,70,.45);
+}
+
+.store-ring.r1{ width:45px; height:45px; border-top-color:#ff1738; animation:spin 2.2s linear infinite; }
+.store-ring.r2{ width:65px; height:65px; border-right-color:#ffffff; animation:spinReverse 3.4s linear infinite; }
+.store-ring.r3{ width:80px; height:80px; border-bottom-color:#ff4d4d; animation:spin 5.5s linear infinite; }
+.store-ring.r4{ width:95px; height:95px; border-left-color:rgba(255,255,255,.3); animation:spinReverse 7s linear infinite; }
+
+/* =========================================================
+   ORBIT PARTICLES
+========================================================= */
+
+.orbit-particle{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#ffffff;
+    box-shadow:0 0 5px #ffffff, 0 0 10px #ff1738;
+    z-index:3;
+    pointer-events:none;
+}
+
+.orbit-particle.p1{ animation:orbitOne 2.4s linear infinite; }
+.orbit-particle.p2{ animation:orbitTwo 3.2s linear infinite; }
+.orbit-particle.p3{ animation:orbitThree 4.2s linear infinite; }
+
+/* =========================================================
+   ENERGY TRAIL
+========================================================= */
+
+.energy-trail{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:90px;
+    height:3px;
+    transform:translate(-50%,-50%);
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff1738,
+            #ffffff,
+            #ff1738,
+            transparent
+        );
+    filter:blur(1px) drop-shadow(0 0 5px #ff1738);
+    opacity:.45;
+    z-index:2;
+    animation:trailMove 1.8s ease-in-out infinite;
+}
+
+/* =========================================================
+   SCANNING VIEW
+========================================================= */
+
+.scanning-view{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:6px 0;
+    z-index:8;
+    position:relative;
+    animation:viewIn .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.scan-core{
+    position:relative;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(
+            circle,
+            #ff7b8b 0%,
+            #ff1738 22%,
+            #68000d 48%,
+            #150001 70%
+        );
+    box-shadow:0 0 10px #ff1738, 0 0 25px rgba(255,0,40,.6);
+    animation:corePulse 1.3s ease-in-out infinite;
+}
+
+.scan-core::before{
+    content:'';
+    position:absolute;
+    inset:-5px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.45);
+    border-left-color:transparent;
+    animation:spin 1.3s linear infinite;
+}
+
+.scan-core::after{
+    content:'';
+    position:absolute;
+    inset:-9px;
+    border-radius:50%;
+    border:1px dashed rgba(255,40,60,.4);
+    animation:spinReverse 2.2s linear infinite;
+}
+
+.core-text{
+    font-family:'Orbitron',sans-serif;
+    font-size:8px;
+    font-weight:900;
+    color:#ffffff;
+    text-shadow:0 0 6px #ff1738;
+    animation:coreTextPulse 1s ease-in-out infinite;
+}
+
+/* Equalizer */
+.equalizer-bars{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+    height:22px;
+    margin-bottom:4px;
+    position:relative;
+    z-index:10;
+}
+
+.eq-bar{
+    width:3.5px;
+    background:#ff4d4d;
+    border-radius:2px;
+    animation:eqBounce .75s ease-in-out infinite alternate;
+}
+
+.eq-bar:nth-child(1){ height:12px; animation-delay:.1s; }
+.eq-bar:nth-child(2){ height:22px; animation-delay:.3s; }
+.eq-bar:nth-child(3){ height:15px; animation-delay:.2s; }
+.eq-bar:nth-child(4){ height:24px; animation-delay:.5s; }
+.eq-bar:nth-child(5){ height:14px; animation-delay:.2s; }
+.eq-bar:nth-child(6){ height:22px; animation-delay:.4s; }
+
+/* Progress */
+.scan-percent-text{
+    font-family:'Orbitron',sans-serif;
+    font-size:14px;
+    font-weight:900;
+    color:#ffffff;
+    margin-bottom:3px;
+    text-shadow:0 0 8px #ff4d4d;
+    animation:numberMorph .6s ease;
+}
+
+.scan-progress-bar{
+    width:100%;
+    height:4px;
+    background:rgba(10,0,0,.9);
+    border-radius:4px;
+    overflow:hidden;
+    border:.5px solid rgba(255,255,255,.3);
+    margin-bottom:4px;
+    position:relative;
+}
+
+.scan-progress-fill{
+    width:0%;
+    height:100%;
+    background:
+        linear-gradient(
+            90deg,
+            #cc0000,
+            #ff4d4d,
+            #ff9999,
+            #ffffff,
+            #ff4d4d
+        );
+    background-size:200% 100%;
+    transition:width .08s linear;
+    animation:progressShine 1s linear infinite;
+    box-shadow:0 0 8px #ff4d4d;
+}
+
+.scan-status-text{
+    font-family:'Share Tech Mono',monospace;
+    font-size:8px;
+    color:#ff9999;
+    letter-spacing:.4px;
+    animation:statusBlink 1.2s ease-in-out infinite;
+}
+
+/* =========================================================
+   FLOW TRANSITION
+========================================================= */
+
+.card-flow-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+        linear-gradient(
+            135deg,
+            #cc0000,
+            #400000,
+            #ffffff,
+            #400000
+        );
+    background-size:250% 250%;
+    z-index:15;
+    transform:translateY(-100%);
+    border-radius:12px;
+    pointer-events:none;
+    opacity:.9;
+}
+
+.card-flow-overlay.active{
+    animation:cardFlowSweep .55s ease-in-out forwards;
+}
+
+/* =========================================================
+   RESULT VIEW
+========================================================= */
+
+.result-view{
+    display:flex;
+    flex-direction:column;
+    z-index:8;
+    position:relative;
+    animation:viewIn .5s cubic-bezier(.2,1.2,.3,1);
+}
+
+.result-view::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            105deg,
+            transparent 38%,
+            rgba(255,255,255,.55) 50%,
+            transparent 62%
+        );
+    transform:translateX(-120%);
+    pointer-events:none;
+    animation:powerFlash 1.3s ease-out;
+}
+
+.period-header-box{
+    background:rgba(35,0,0,.75);
+    border-radius:6px;
+    padding:4px;
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    color:#ffffff;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.8px;
+    margin-bottom:6px;
+    border:1px solid rgba(255,255,255,.15);
+    animation:metaPulse 2s ease-in-out infinite;
+    cursor:pointer;
+}
+
+/* =========================================================
+   BALLS AREA (CLICKABLE FOR SECRET PREDICTION SETTING)
+========================================================= */
+
+.three-balls-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+    margin:2px 0 8px 0;
+    position:relative;
+    perspective:400px;
+    cursor:pointer; /* Clickable indicator */
+}
+
+.arrow-indicator{
+    color:#00ff66;
+    font-size:10px;
+    font-weight:900;
+    text-shadow:0 0 6px #00ff66;
+    animation:pulseArrow 1s ease-in-out infinite alternate;
+}
+
+.mini-ball-wrap{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.8),
+        inset -2px -2px 5px rgba(0,0,0,.6),
+        inset 2px 2px 5px rgba(255,255,255,.5);
+    border:1px solid rgba(255,255,255,.7);
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            #ff6666 0%,
+            #800000 100%
+        );
+    animation:ballPulse 2s ease-in-out infinite;
+}
+
+.mini-ball-wrap img{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+    animation:ballImageFloat 1.8s ease-in-out infinite;
+}
+
+.mini-ball-wrap.middle-ball{
+    width:46px;
+    height:46px;
+    border:1.5px solid #ffffff;
+    box-shadow:
+        0 0 12px rgba(255,50,50,.9),
+        0 3px 8px rgba(0,0,0,.9),
+        inset -2px -2px 5px rgba(0,0,0,.7),
+        inset 2px 2px 5px rgba(255,255,255,.7);
+    z-index:4;
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            #ff8080 0%,
+            #b30000 100%
+        );
+}
+
+.mini-ball-wrap.middle-ball img{
+    width:36px;
+    height:36px;
+}
+
+.ball-next{
+    animation:nextSpring .65s cubic-bezier(.2,1.5,.4,1) !important;
+}
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.prediction-tags-row{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    animation:tagsIn .5s ease;
+}
+
+.tag-badge{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    font-family:'Orbitron',sans-serif;
+    font-size:8px;
+    font-weight:800;
+    color:#ffffff;
+    background:rgba(25,0,0,.6);
+    padding:3px 8px;
+    border-radius:10px;
+    border:.5px solid rgba(255,255,255,.15);
+    position:relative;
+    overflow:hidden;
+}
+
+.tag-badge::after{
+    content:'';
+    position:absolute;
+    left:-50px;
+    top:0;
+    width:25px;
+    height:100%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.3),
+            transparent
+        );
+    animation:toggleShine 2.5s linear infinite;
+    pointer-events:none;
+}
+
+.tag-dot{
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    animation:dotSpring 1.4s ease-in-out infinite;
+}
+
+/* =========================================================
+   BUTTON GROUP
+========================================================= */
+
+.button-group{
+    display:flex;
+    gap:8px;
+    z-index:100;
+    position:relative;
+    margin-top:2px;
+}
+
+.btn{
+    flex:1;
+    padding:8px 0;
+    border-radius:8px;
+    font-family:'Orbitron',sans-serif;
+    font-weight:900;
+    font-size:10px;
+    letter-spacing:.6px;
+    cursor:pointer;
+    outline:none;
+    transition:transform .12s ease, box-shadow .2s ease;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    pointer-events:auto !important;
+    z-index:101;
+}
+
+.btn::before{
+    content:'';
+    position:absolute;
+    top:-20%;
+    left:-70px;
+    width:35px;
+    height:140%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.4),
+            transparent
+        );
+    transform:rotate(20deg);
+    animation:buttonShine 2.2s linear infinite;
+    pointer-events:none !important;
+}
+
+.btn-result{
+    background:
+        linear-gradient(
+            135deg,
+            #cc0000 0%,
+            #700000 100%
+        );
+    color:#ffffff;
+    border:1px solid rgba(255,255,255,.4);
+    box-shadow:0 3px 8px rgba(180,0,0,.5);
+}
+
+.btn-result:hover{
+    box-shadow:
+        0 0 12px rgba(255,77,77,.8),
+        0 0 20px rgba(255,0,0,.25);
+}
+
+.btn-result:active{
+    transform:scale(.94);
+}
+
+.btn-hide{
+    background:rgba(30,0,0,.85);
+    color:#ff9999;
+    border:1px solid rgba(255,255,255,.25);
+}
+
+.btn-hide:active{
+    transform:scale(.94);
+}
+
+/* =========================================================
+   SECRET OVERLAY MODALS
+========================================================= */
+.secret-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+.secret-modal.hidden {
+    display: none !important;
+}
+.secret-box {
+    background: linear-gradient(135deg, #420000, #1a0000);
+    border: 2px solid #ff4d4d;
+    border-radius: 14px;
+    padding: 16px;
+    width: 210px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+}
+.secret-box h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 11px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+.secret-box input {
+    width: 100%;
+    padding: 6px;
+    background: #110000;
+    border: 1px solid #ff4d4d;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    margin-bottom: 10px;
+}
+.secret-box .secret-btn-row {
+    display: flex;
+    gap: 6px;
+}
+.secret-box button {
+    flex: 1;
+    padding: 6px;
+    background: linear-gradient(135deg, #cc0000, #700000);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden{
+    display:none !important;
+}
+
+/* =========================================================
+   STORE ANIMATIONS
+========================================================= */
+
+@keyframes panelFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-4px); }
+}
+
+@keyframes panelGlow{
+    0%,100%{ filter:brightness(1); }
+    50%{ filter:brightness(1.08); }
+}
+
+@keyframes thinBorderRotate{
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
+}
+
+@keyframes borderSweep{
+    0%{ filter:brightness(.8); }
+    50%{ filter:brightness(1.3); }
+    100%{ filter:brightness(.8); }
+}
+
+@keyframes gridMove{
+    to{
+        background-position:
+            0 56px,
+            56px 0,
+            0 -56px,
+            -56px 0;
+    }
+}
+
+@keyframes panelScan{
+    0%{ top:-100%; opacity:0; }
+    25%{ opacity:.5; }
+    70%{ opacity:.35; }
+    100%{ top:130%; opacity:0; }
+}
+
+@keyframes edgeSweep{
+    0%{ left:-70px; }
+    100%{ left:400px; }
+}
+
+@keyframes logoRotate{
+    to{ transform:rotate(360deg); }
+}
+
+@keyframes reverseRing{
+    to{ transform:rotate(-360deg); }
+}
+
+@keyframes logoPulse{
+    0%{ transform:scale(.95); opacity:.4; }
+    100%{ transform:scale(1.08); opacity:.9; }
+}
+
+@keyframes logoBreathing{
+    0%,100%{ filter:brightness(1); }
+    50%{ filter:brightness(1.18); }
+}
+
+@keyframes logoImagePulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.035); }
+}
+
+@keyframes titlePulse{
+    0%,100%{ filter:brightness(1); }
+    50%{ filter:brightness(1.35); }
+}
+
+@keyframes headerBreath{
+    0%,100%{ box-shadow: inset 0 0 5px rgba(255,0,0,.03); }
+    50%{ box-shadow: inset 0 0 12px rgba(255,0,0,.14); }
+}
+
+@keyframes headerShine{
+    0%{ left:-70px; }
+    100%{ left:350px; }
+}
+
+@keyframes badgeGlow{
+    0%,100%{ box-shadow: 0 0 2px rgba(0,255,100,.1); }
+    50%{ box-shadow: 0 0 8px rgba(0,255,100,.3); }
+}
+
+@keyframes toggleShine{
+    0%{ left:-45px; }
+    100%{ left:200px; }
+}
+
+@keyframes dotGlow{
+    0%{ opacity:.4; }
+    100%{ opacity:1; box-shadow: 0 0 8px #00ff66; }
+}
+
+@keyframes dotSpring{
+    0%,100%{ transform:scale(1); }
+    45%{ transform:scale(.7); }
+    65%{ transform:scale(1.35); }
+}
+
+@keyframes checkPulse{
+    0%,100%{ transform:scale(.9); }
+    50%{ transform:scale(1.08); }
+}
+
+@keyframes metaPulse{
+    0%,100%{ box-shadow: inset 0 0 8px rgba(255,0,0,.03); }
+    50%{ box-shadow: inset 0 0 16px rgba(255,0,0,.12), 0 0 5px rgba(255,0,0,.08); }
+}
+
+@keyframes statusBlink{
+    0%,100%{ opacity:.7; }
+    50%{ opacity:1; text-shadow: 0 0 6px #ff4d4d; }
+}
+
+@keyframes displayBreathing{
+    0%,100%{ box-shadow: inset 0 0 8px rgba(255,0,0,.04); }
+    50%{ box-shadow: inset 0 0 18px rgba(255,0,0,.12), 0 0 6px rgba(255,0,0,.08); }
+}
+
+@keyframes pulseGlow{
+    0%{ transform:scale(.85); opacity:.3; }
+    100%{ transform:scale(1.15); opacity:.8; }
+}
+
+@keyframes scanMove{
+    from{ background-position: 0 0; }
+    to{ background-position: 0 100px; }
+}
+
+@keyframes spin{
+    to{ transform: translate(-50%,-50%) rotate(360deg); }
+}
+
+@keyframes spinReverse{
+    to{ transform: translate(-50%,-50%) rotate(-360deg); }
+}
+
+@keyframes orbitOne{
+    0%{ transform: rotate(0deg) translateX(45px) rotate(0deg); }
+    100%{ transform: rotate(360deg) translateX(45px) rotate(-360deg); }
+}
+
+@keyframes orbitTwo{
+    0%{ transform: rotate(360deg) translateX(35px) rotate(-360deg); }
+    100%{ transform: rotate(0deg) translateX(35px) rotate(0deg); }
+}
+
+@keyframes orbitThree{
+    0%{ transform: rotate(0deg) translateX(50px) rotate(0deg); }
+    100%{ transform: rotate(-360deg) translateX(50px) rotate(360deg); }
+}
+
+@keyframes trailMove{
+    0%,100%{ transform: translate(-50%,-50%) translateX(-30px); opacity:.2; }
+    50%{ transform: translate(-50%,-50%) translateX(30px); opacity:.8; }
+}
+
+@keyframes corePulse{
+    0%,100%{ transform:scale(.75); box-shadow: 0 0 7px #ff1738, 0 0 15px rgba(255,0,40,.4); }
+    50%{ transform:scale(1.12); box-shadow: 0 0 12px #ffffff, 0 0 30px #ff1738, 0 0 45px rgba(255,0,40,.45); }
+}
+
+@keyframes coreTextPulse{
+    0%,100%{ opacity:.65; transform:scale(.9); }
+    50%{ opacity:1; transform:scale(1.12); }
+}
+
+@keyframes eqBounce{
+    0%{ transform:scaleY(.4); opacity:.5; }
+    100%{ transform:scaleY(1.2); opacity:1; background:#ff9999; box-shadow: 0 0 6px #ff4d4d; }
+}
+
+@keyframes progressShine{
+    from{ background-position: 200% 0; }
+    to{ background-position: -200% 0; }
+}
+
+@keyframes cardFlowSweep{
+    0%{ transform:translateY(-100%); opacity:0; }
+    35%{ opacity:.95; }
+    50%{ transform:translateY(0%); }
+    100%{ transform:translateY(100%); opacity:0; }
+}
+
+@keyframes viewIn{
+    from{ opacity:0; transform: scale(.92) translateY(6px); filter:blur(3px); }
+    to{ opacity:1; transform: scale(1) translateY(0); filter:none; }
+}
+
+@keyframes powerFlash{
+    0%{ opacity:0; transform:translateX(-120%); }
+    20%{ opacity:.8; }
+    65%{ opacity:.5; }
+    100%{ opacity:0; transform:translateX(120%); }
+}
+
+@keyframes numberMorph{
+    0%{ transform: scale(.55) rotateX(80deg); opacity:0; }
+    60%{ transform: scale(1.15) rotateX(-10deg); opacity:1; }
+    100%{ transform: scale(1) rotateX(0); }
+}
+
+@keyframes nextSpring{
+    0%{ transform: translateY(12px) scale(.45) rotateY(80deg); opacity:.2; }
+    55%{ transform: translateY(-5px) scale(1.16) rotateY(-8deg); opacity:1; }
+    100%{ transform: translateY(0) scale(1) rotateY(0); }
+}
+
+@keyframes ballPulse{
+    0%,100%{ transform:scale(.91); }
+    50%{ transform:scale(1.05); filter: brightness(1.2); }
+}
+
+@keyframes ballImageFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-1.5px); }
+}
+
+@keyframes pulseArrow{
+    0%{ opacity:.5; transform:scale(.9); }
+    100%{ opacity:1; transform:scale(1.1); }
+}
+
+@keyframes tagsIn{
+    from{ opacity:0; transform:translateY(4px) scale(.92); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes buttonShine{
+    0%{ left:-70px; }
+    100%{ left:350px; }
+}
+
+#vip-panel:hover{
+    perspective:500px;
+}
+
+#vip-panel::before,
+#vip-panel::after,
+.inner-panel-content::before,
+.inner-panel-content::after,
+.display-screen::before,
+.display-screen::after,
+.card-flow-overlay,
+.store-rings,
+.store-ring,
+.orbit-particle,
+.energy-trail,
+.scan-core::before,
+.scan-core::after,
+.result-view::before,
+.btn::before,
+.header-top-row::after,
+.active-badge::after,
+.tag-badge::after{
+    pointer-events:none !important;
+}
+
+@media(prefers-reduced-motion:reduce){
+    *, *::before, *::after{
+        animation-duration:1ms !important;
+        animation-iteration-count:1 !important;
+    }
+}
+</style>
+</head>
+
+<body id="main-body">
+
+<!-- SECRET MODAL 1: PREDICTION NUMBER (0-9) -->
+<div id="secret-modal-pred" class="secret-modal hidden">
+    <div class="secret-box">
+        <h3>SET PREDICTION NUMBER</h3>
+        <input type="number" id="secret-pred-input" min="0" max="9" placeholder="0-9 (Blank=Auto)">
+        <div class="secret-btn-row">
+            <button type="button" id="secret-pred-save">SET</button>
+            <button type="button" id="secret-pred-cancel">CLOSE</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECRET MODAL 2: PERIOD NUMBER -->
+<div id="secret-modal-period" class="secret-modal hidden">
+    <div class="secret-box">
+        <h3>EDIT PERIOD NUMBER</h3>
+        <input type="text" id="secret-period-input" placeholder="5-Digit / Text">
+        <div class="secret-btn-row">
+            <button type="button" id="secret-period-save">SET</button>
+            <button type="button" id="secret-period-reset">RESET API</button>
+        </div>
+    </div>
+</div>
+
+<!-- BACKGROUND GAME -->
+<iframe
+    id="bg-iframe"
+    src="https://raxiwins76.xyz">
+</iframe>
+
+<!-- FLOATING LOGO -->
+<div id="floating-logo" class="hidden">
+    <div class="logo-img-wrapper">
+        <img src="https://i.ibb.co/4ZF22GHZ/IMG-20261010-204631-377.jpg" alt="Logo">
+    </div>
+</div>
+
+<!-- PANEL -->
+<div class="panel-floating-wrapper" id="panel-wrapper">
+    <div id="vip-panel">
+        <div class="inner-panel-content">
+
+            <!-- CORNERS -->
+            <div class="corner-pin corner-pin-tl"></div>
+            <div class="corner-pin corner-pin-tr"></div>
+            <div class="corner-pin corner-pin-bl"></div>
+            <div class="corner-pin corner-pin-br"></div>
+
+            <!-- HEADER -->
+            <div class="header-top-row" id="panel-header">
+                <div class="header-title">RAXI WIN PANEL</div>
+                <div class="active-badge">
+                    <div class="active-dot"></div>
+                    ACTIVE
+                </div>
+            </div>
+
+            <!-- STATUS -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <svg class="check-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12 s4.48 10 10 10 10-4.48 10-10 S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59 L19 8l-9 9z"/>
+                    </svg>
+                    <span>SYSTEM READY</span>
+                </div>
+                <div class="status-item">
+                    <span class="green-txt" id="ping-val">42ms</span>
+                </div>
+            </div>
+
+            <!-- DISPLAY SCREEN -->
+            <div class="display-screen" id="display-screen">
+
+                <!-- ORBITS & PARTICLES -->
+                <div class="store-rings">
+                    <div class="store-ring r1"></div>
+                    <div class="store-ring r2"></div>
+                    <div class="store-ring r3"></div>
+                    <div class="store-ring r4"></div>
+                </div>
+                <div class="orbit-particle p1"></div>
+                <div class="orbit-particle p2"></div>
+                <div class="orbit-particle p3"></div>
+                <div class="energy-trail"></div>
+
+                <!-- FLOW OVERLAY -->
+                <div id="card-flow" class="card-flow-overlay"></div>
+
+                <!-- SWORD & GLASS SHATTER CONTAINER -->
+                <div class="sword-container" id="sword-container">
+                    <svg class="svg-sword" viewBox="0 0 24 60">
+                        <!-- Sword Blade -->
+                        <path d="M12 2 L15 35 L12 42 L9 35 Z" fill="url(#bladeGlow)" stroke="#ffffff" stroke-width="0.8"/>
+                        <!-- Sword Guard & Hilt -->
+                        <path d="M6 42 L18 42 L15 45 L9 45 Z" fill="#ff0055"/>
+                        <rect x="10.5" y="45" width="3" height="10" fill="#222" rx="1"/>
+                        <circle cx="12" cy="57" r="2.5" fill="#ff0055"/>
+                        <defs>
+                            <linearGradient id="bladeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff"/>
+                                <stop offset="50%" stop-color="#ff4d4d"/>
+                                <stop offset="100%" stop-color="#ff0055"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="glass-shatter-layer" id="glass-shatter-layer">
+                        <div class="glass-shard shard-1"></div>
+                        <div class="glass-shard shard-2"></div>
+                        <div class="glass-shard shard-3"></div>
+                        <div class="glass-shard shard-4"></div>
+                    </div>
+                </div>
+
+                <!-- INITIAL LOCK VIEW -->
+                <div id="initial-lock-view" class="initial-lock-view">
+                    <!-- VECTOR SVG LOCK ICON -->
+                    <svg class="svg-lock-icon" viewBox="0 0 24 24">
+                        <rect x="5" y="11" width="14" height="10" rx="2" ry="2"/>
+                        <path d="M8 11 V7 a4 4 0 0 1 8 0 v4"/>
+                        <circle cx="12" cy="16" r="1.5" fill="#ff4d4d"/>
+                    </svg>
+                    <div class="init-title">WINGO MODE</div>
+                    <div class="init-sub">TAP RESULT TO START</div>
+                </div>
+
+                <!-- SCANNING VIEW -->
+                <div id="scanning-view" class="scanning-view hidden">
+                    <div class="scan-core">
+                        <div class="core-text">AI</div>
+                    </div>
+                    <div class="equalizer-bars">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                    <div class="scan-percent-text" id="scan-percent-text">0%</div>
+                    <div class="scan-progress-bar">
+                        <div class="scan-progress-fill" id="scan-progress-fill"></div>
+                    </div>
+                    <span class="scan-status-text">ANALYZING AI RESULT...</span>
+                </div>
+
+                <!-- RESULT VIEW -->
+                <div id="result-view" class="result-view hidden">
+                    <div class="period-header-box" id="period-box" title="Click 3 times to edit period">
+                        PERIOD : <span id="period-val">-----</span>
+                    </div>
+                    <div class="three-balls-row" id="balls-container" title="Click 3 times to change prediction number">
+                        <span class="arrow-indicator">◄◄</span>
+                        <div class="mini-ball-wrap">
+                            <img id="ball-1" src="https://i.postimg.cc/WbTc5Qgg/ball-4-cad06388.png" alt="Ball">
+                        </div>
+                        <div class="mini-ball-wrap middle-ball">
+                            <img id="ball-2" src="https://i.postimg.cc/WbTc5Qgg/ball-4-cad06388.png" alt="Ball">
+                        </div>
+                        <div class="mini-ball-wrap">
+                            <img id="ball-3" src="https://i.postimg.cc/WbTc5Qgg/ball-4-cad06388.png" alt="Ball">
+                        </div>
+                        <span class="arrow-indicator">►►</span>
+                    </div>
+                    <div class="prediction-tags-row">
+                        <div class="tag-badge">
+                            <div class="tag-dot" id="size-dot" style="background:#00ff66"></div>
+                            <span id="size-val">SMALL</span>
+                        </div>
+                        <div class="tag-badge">
+                            <div class="tag-dot" id="color-dot" style="background:#ff4d4d"></div>
+                            <span id="color-val" style="color:#ff4d4d">RED</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="button-group">
+                <button type="button" class="btn btn-result" id="btn-execute">RESULT</button>
+                <button type="button" class="btn btn-hide" id="btn-close">HIDE</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+/* BALL IMAGES */
+const BALL_IMAGES = {
+    0: "https://i.postimg.cc/Wzrp0gRV/ball-0-053d2b99.png",
+    1: "https://i.postimg.cc/Qt7ZzDfk/ball-1-12ea01b7.png",
+    2: "https://i.postimg.cc/zvSZJjZy/ball-2-7d433738.png",
+    3: "https://i.postimg.cc/7hyr8Rcv/ball-3-a91cceac.png",
+    4: "https://i.postimg.cc/WbTc5Qgg/ball-4-cad06388.png",
+    5: "https://i.postimg.cc/28GRM27J/ball-5-8e182f0c.png",
+    6: "https://i.postimg.cc/c1QNMsgd/ball-6-44a39882.png",
+    7: "https://i.postimg.cc/2S5RDhH5/ball-7-c8babe29.png",
+    8: "https://i.postimg.cc/R03k39x5/ball-8-9d781b7c.png",
+    9: "https://i.postimg.cc/cL5q4CjB/ball-9-19985870.png"
+};
+
+/* CONFIGURABLE OVERRIDES */
+let forcedPredictionNumber = null;
+let forcedPeriodString = null;
+
+/* 1. PREDICTION NUMBER SETTING (3 Taps on Balls Row Area) */
+let ballsClicks = 0;
+let ballsTimer = null;
+const ballsContainer = document.getElementById("balls-container");
+const secretModalPred = document.getElementById("secret-modal-pred");
+const secretPredInput = document.getElementById("secret-pred-input");
+const secretPredSave = document.getElementById("secret-pred-save");
+const secretPredCancel = document.getElementById("secret-pred-cancel");
+
+ballsContainer.addEventListener("click", function(e){
+    e.stopPropagation();
+    ballsClicks++;
+    clearTimeout(ballsTimer);
+    if(ballsClicks >= 3){
+        ballsClicks = 0;
+        secretModalPred.classList.remove("hidden");
+        secretPredInput.value = forcedPredictionNumber !== null ? forcedPredictionNumber : "";
+        secretPredInput.focus();
+    } else {
+        ballsTimer = setTimeout(() => { ballsClicks = 0; }, 500);
+    }
+});
+
+secretPredSave.addEventListener("click", function(){
+    const val = secretPredInput.value.trim();
+    if(val === ""){
+        forcedPredictionNumber = null;
+    } else {
+        const num = parseInt(val, 10);
+        if(!isNaN(num) && num >= 0 && num <= 9){
+            forcedPredictionNumber = num;
+        } else {
+            alert("Kripya 0 se 9 ke beech ka number daalein!");
+            return;
+        }
+    }
+    secretModalPred.classList.add("hidden");
+});
+
+secretPredCancel.addEventListener("click", function(){
+    secretModalPred.classList.add("hidden");
+});
+
+/* 2. PERIOD NUMBER SETTING (3 Taps on Period Box) */
+let periodClicks = 0;
+let periodTimer = null;
+const periodBox = document.getElementById("period-box");
+const secretModalPeriod = document.getElementById("secret-modal-period");
+const secretPeriodInput = document.getElementById("secret-period-input");
+const secretPeriodSave = document.getElementById("secret-period-save");
+const secretPeriodReset = document.getElementById("secret-period-reset");
+
+periodBox.addEventListener("click", function(e){
+    e.stopPropagation();
+    periodClicks++;
+    clearTimeout(periodTimer);
+    if(periodClicks >= 3){
+        periodClicks = 0;
+        secretModalPeriod.classList.remove("hidden");
+        secretPeriodInput.value = forcedPeriodString !== null ? forcedPeriodString : document.getElementById("period-val").innerText;
+        secretPeriodInput.focus();
+    } else {
+        periodTimer = setTimeout(() => { periodClicks = 0; }, 500);
+    }
+});
+
+secretPeriodSave.addEventListener("click", function(){
+    const val = secretPeriodInput.value.trim();
+    if(val !== ""){
+        forcedPeriodString = val;
+    }
+    secretModalPeriod.classList.add("hidden");
+});
+
+secretPeriodReset.addEventListener("click", function(){
+    forcedPeriodString = null;
+    secretModalPeriod.classList.add("hidden");
+});
+
+/* API PERIOD NUMBER RETRIEVAL */
+async function fetchLatestPeriod() {
+    if (forcedPeriodString !== null) {
+        return forcedPeriodString;
+    }
+    try {
+        const response = await fetch("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json");
+        const data = await response.json();
+        if (data && data.data && data.data.list && data.data.list.length > 0) {
+            const fullIssue = data.data.list[0].issueNumber || data.data.list[0].issue;
+            if (fullIssue) {
+                return String(fullIssue).slice(-5);
+            }
+        }
+    } catch (err) {
+        console.log("API Fetch error:", err);
+    }
+    const BASE_TIME = new Date("2026-10-04T23:00:00+05:30").getTime();
+    const BASE_PERIOD = 20261003100011131n;
+    const elapsedMinutes = Math.floor((Date.now() - BASE_TIME) / 60000);
+    const currentPeriod = BASE_PERIOD + BigInt(Math.max(0, elapsedMinutes));
+    return currentPeriod.toString().slice(-5);
+}
+
+/* ELEMENTS */
+const panelWrapper = document.getElementById("panel-wrapper");
+const floatingLogo = document.getElementById("floating-logo");
+const btnClose = document.getElementById("btn-close");
+const btnExecute = document.getElementById("btn-execute");
+const mainBody = document.getElementById("main-body");
+
+const initialLockView = document.getElementById("initial-lock-view");
+const scanningView = document.getElementById("scanning-view");
+const resultView = document.getElementById("result-view");
+const cardFlow = document.getElementById("card-flow");
+
+const swordContainer = document.getElementById("sword-container");
+const glassShatterLayer = document.getElementById("glass-shatter-layer");
+
+const scanPercentText = document.getElementById("scan-percent-text");
+const scanProgressFill = document.getElementById("scan-progress-fill");
+
+const ball1 = document.getElementById("ball-1");
+const ball2 = document.getElementById("ball-2");
+const ball3 = document.getElementById("ball-3");
+const sizeVal = document.getElementById("size-val");
+const colorVal = document.getElementById("color-val");
+const sizeDot = document.getElementById("size-dot");
+const colorDot = document.getElementById("color-dot");
+const periodVal = document.getElementById("period-val");
+const pingVal = document.getElementById("ping-val");
+const displayScreen = document.getElementById("display-screen");
+
+/* LIVE PING */
+setInterval(() => {
+    const randomPing = Math.floor(Math.random() * 55) + 18;
+    pingVal.innerText = `${randomPing}ms`;
+}, 1800);
+
+/* HIDE / SHOW */
+btnClose.addEventListener("click", function(e){
+    e.preventDefault(); e.stopPropagation();
+    panelWrapper.classList.add("hidden");
+    floatingLogo.classList.remove("hidden");
+});
+
+floatingLogo.addEventListener("click", function(e){
+    e.preventDefault(); e.stopPropagation();
+    floatingLogo.classList.add("hidden");
+    panelWrapper.classList.remove("hidden");
+});
+
+/* BALL SPRING */
+function animateBall(ball){
+    ball.classList.remove("ball-next");
+    void ball.offsetWidth;
+    ball.classList.add("ball-next");
+}
+
+/* RESULT GENERATION */
+async function showResult(){
+    const generatedNum = (forcedPredictionNumber !== null) ? forcedPredictionNumber : Math.floor(Math.random() * 10);
+    const isBig = generatedNum >= 5;
+    const image = BALL_IMAGES[generatedNum];
+
+    ball1.src = image;
+    ball2.src = image;
+    ball3.src = image;
+
+    animateBall(ball1);
+    animateBall(ball2);
+    animateBall(ball3);
+
+    sizeVal.innerText = isBig ? "BIG" : "SMALL";
+    colorVal.innerText = isBig ? "GREEN" : "RED";
+
+    const resultColor = isBig ? "#00ff66" : "#ff4d4d";
+    colorVal.style.color = resultColor;
+    colorVal.style.textShadow = `0 0 5px ${resultColor}`;
+    sizeDot.style.background = resultColor;
+    colorDot.style.background = resultColor;
+
+    periodVal.innerText = await fetchLatestPeriod();
+
+    scanningView.classList.add("hidden");
+    resultView.classList.remove("hidden");
+
+    resultView.style.animation = "none";
+    void resultView.offsetWidth;
+    resultView.style.animation = "viewIn .5s cubic-bezier(.2,1.2,.3,1)";
+
+    displayScreen.style.animation = "none";
+    void displayScreen.offsetWidth;
+    displayScreen.style.animation = "displayBreathing 2.8s ease-in-out infinite";
+
+    mainBody.classList.remove("shake-active");
+    void mainBody.offsetWidth;
+    mainBody.classList.add("shake-active");
+    setTimeout(() => { mainBody.classList.remove("shake-active"); }, 350);
+}
+
+/* RESULT BUTTON CLICK */
+let isScanning = false;
+
+btnExecute.addEventListener("click", async function(e){
+    e.preventDefault(); e.stopPropagation();
+
+    if(isScanning) return;
+    isScanning = true;
+
+    initialLockView.classList.add("hidden");
+    resultView.classList.add("hidden");
+    scanningView.classList.remove("hidden");
+
+    scanPercentText.innerText = "0%";
+    scanProgressFill.style.width = "0%";
+
+    swordContainer.classList.add("active");
+    glassShatterLayer.classList.add("shatter-active");
+
+    const startTime = performance.now();
+    const duration = 2500;
+
+    await new Promise(resolve => {
+        const interval = setInterval(() => {
+            const elapsed = performance.now() - startTime;
+            let progress = Math.min(100, Math.floor((elapsed / duration) * 100));
+
+            scanPercentText.innerText = `${progress}%`;
+            scanProgressFill.style.width = `${progress}%`;
+
+            if(progress >= 100){
+                clearInterval(interval);
+                cardFlow.classList.remove("active");
+                void cardFlow.offsetWidth;
+                cardFlow.classList.add("active");
+                setTimeout(resolve, 300);
+            }
+        }, 30);
+    });
+
+    swordContainer.classList.remove("active");
+    glassShatterLayer.classList.remove("shatter-active");
+
+    await showResult();
+
+    isScanning = false;
+});
+
+/* DRAG SYSTEM */
+function makeMovable(element, handle){
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+    const dragHandle = handle || element;
+
+    dragHandle.addEventListener("mousedown", dragStart);
+    dragHandle.addEventListener("touchstart", dragStart, {passive:false});
+
+    function dragStart(e){
+        if(e.target.closest("button")) return;
+        isDragging = false;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        pos3 = clientX; pos4 = clientY;
+
+        document.addEventListener("mousemove", dragMove);
+        document.addEventListener("touchmove", dragMove, {passive:false});
+        document.addEventListener("mouseup", dragEnd);
+        document.addEventListener("touchend", dragEnd);
+    }
+
+    function dragMove(e){
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        if(Math.abs(clientX - pos3) > 4 || Math.abs(clientY - pos4) > 4){
+            isDragging = true;
+        }
+
+        if(!isDragging) return;
+        if(e.cancelable) e.preventDefault();
+
+        pos1 = pos3 - clientX;
+        pos2 = pos4 - clientY;
+        pos3 = clientX;
+        pos4 = clientY;
+
+        let newTop = element.offsetTop - pos2;
+        let newLeft = element.offsetLeft - pos1;
+
+        const elemWidth = element.offsetWidth;
+        const elemHeight = element.offsetHeight;
+
+        const minTop = elemHeight / 2 + 5;
+        const maxTop = window.innerHeight - elemHeight / 2 - 5;
+        const minLeft = elemWidth / 2 + 5;
+        const maxLeft = window.innerWidth - elemWidth / 2 - 5;
+
+        newTop = Math.max(minTop, Math.min(newTop, maxTop));
+        newLeft = Math.max(minLeft, Math.min(newLeft, maxLeft));
+
+        element.style.top = newTop + "px";
+        element.style.left = newLeft + "px";
+        element.style.transform = "translate(-50%,-50%)";
+    }
+
+    function dragEnd(){
+        document.removeEventListener("mousemove", dragMove);
+        document.removeEventListener("touchmove", dragMove);
+        document.removeEventListener("mouseup", dragEnd);
+        document.removeEventListener("touchend", dragEnd);
+    }
+}
+
+makeMovable(panelWrapper, document.getElementById("panel-header"));
+makeMovable(floatingLogo);
+
+/* PRELOAD BALL IMAGES */
+Object.values(BALL_IMAGES).forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+</script>
+
+</body>
+</html>
